@@ -239,8 +239,8 @@ body::before {
   grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
   grid-template-areas:
     'copy card'
-    'lede .'
-    'actions .';
+    'lede lede'
+    'actions actions';
   gap: 28px;
   align-items: end;
   padding: 72px 0 40px;
