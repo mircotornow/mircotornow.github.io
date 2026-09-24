@@ -17,9 +17,14 @@ window.SITE_DATA = {
   },
   contact: {
     eyebrow: 'Contact',
-    title: 'Get in touch.',
+    title: 'Something broken or slow? Let’s talk.',
     text: 'Reach me via LinkedIn or email, or find my work on GitHub and IMDb.',
     email: 'hello@mircotornow.com',
+    photo: {
+      src: 'resources/barty-magician.jpg',
+      alt: 'My black cat Barty wearing a small green magician’s cape with a gold star',
+      caption: 'The Great Bartholomew, ready to make your bugs disappear.',
+    },
     actions: [
       {
         label: 'LinkedIn',

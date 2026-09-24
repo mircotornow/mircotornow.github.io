@@ -5,6 +5,13 @@ if (year) {
   year.textContent = new Date().getFullYear();
 }
 
+console.log(
+  `%c// Found a bug? Of course you did.
+// Tell me: ${window.SITE_DATA?.contact.email ?? 'hello@mircotornow.com'}
+// (Barty says hi.)`,
+  'font-family: monospace; font-size: 13px; font-weight: 700; color: #7653a6;'
+);
+
 const themeToggle = document.querySelector('.theme-toggle');
 
 if (themeToggle) {

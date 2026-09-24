@@ -47,7 +47,8 @@
   const contactHost = document.querySelector('[data-site-contact]');
   if (contactHost) {
     contactHost.outerHTML = `
-      <section id="contact" class="shell section reveal contact-block">
+      <section id="contact" class="shell section reveal contact-block${data.contact.photo ? ' has-photo' : ''}">
+        <div class="contact-main">
         <div class="section-heading">
           <p class="eyebrow">${data.contact.eyebrow}</p>
           <h2>${data.contact.title}</h2>
@@ -64,7 +65,30 @@
             )
             .join('')}
         </div>
+        </div>
+        ${
+          data.contact.photo
+            ? `<figure class="photo contact-photo">
+                <img src="${data.contact.photo.src}" alt="${data.contact.photo.alt}" width="900" height="1098" loading="lazy" />
+                <figcaption>${data.contact.photo.caption}</figcaption>
+              </figure>`
+            : ''
+        }
       </section>
     `;
+  }
+
+  const main = document.querySelector('main');
+  if (main) {
+    const updated = new Date(document.lastModified).toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+    main.insertAdjacentHTML(
+      'afterend',
+      `
+      <footer class="shell footer">
+        <p>built and occasionally broken by Mirco (and Barty)</p>
+        <p>last updated ${updated}</p>
+      </footer>
+    `
+    );
   }
 })();
