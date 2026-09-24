@@ -330,6 +330,14 @@ body::before {
   white-space: pre;
 }
 
+/* Separators in the skills lists. */
+.list-sep {
+  margin: 0 0.5em;
+  color: var(--accent);
+  font-family: Consolas, Menlo, Monaco, 'Droid Sans Mono', 'Courier New', monospace;
+  font-weight: 700;
+}
+
 /* Role descriptions read as block comments, like the logo. */
 .cv-entry > p::before,
 .cv-entry > p::after {

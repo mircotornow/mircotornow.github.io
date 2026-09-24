@@ -17,14 +17,30 @@ if (themeToggle) {
     const faviconSrc = theme === 'dark' ? 'resources/favicon-light.svg' : 'resources/favicon-dark.svg';
     document.querySelectorAll('link[rel~="icon"]').forEach((link) => link.setAttribute('href', faviconSrc));
     document.querySelectorAll('.brand-mark-img').forEach((img) => img.setAttribute('src', logoSrc));
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'dark' ? '#17151b' : '#f3efe6');
   };
+
+  const systemDark = window.matchMedia('(prefers-color-scheme: dark)');
+  const systemTheme = () => (systemDark.matches ? 'dark' : 'light');
 
   setTheme(document.documentElement.dataset.theme || 'light');
 
   themeToggle.addEventListener('click', () => {
     const nextTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
-    localStorage.setItem('mirco-theme', nextTheme);
+    // Toggling back to the device's own theme drops the override, so the site follows the device again.
+    if (nextTheme === systemTheme()) {
+      localStorage.removeItem('mirco-theme');
+    } else {
+      localStorage.setItem('mirco-theme', nextTheme);
+    }
     setTheme(nextTheme);
+  });
+
+  // Follow the device live (e.g. automatic dark mode at sunset) unless the visitor picked a theme.
+  systemDark.addEventListener('change', () => {
+    if (!localStorage.getItem('mirco-theme')) {
+      setTheme(systemTheme());
+    }
   });
 }
 
