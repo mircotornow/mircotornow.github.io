@@ -320,6 +320,34 @@ body::before {
   font-weight: 800;
 }
 
+/* Single-line accent labels read as // code comments, echoing the MT logo. */
+.eyebrow::before,
+.project-kicker::before {
+  content: '// ';
+  font-family: Consolas, Menlo, Monaco, 'Droid Sans Mono', 'Courier New', monospace;
+  font-weight: 700;
+  opacity: 0.6;
+  white-space: pre;
+}
+
+/* Role descriptions read as block comments, like the logo. */
+.cv-entry > p::before,
+.cv-entry > p::after {
+  white-space: pre;
+  color: var(--accent);
+  font-family: Consolas, Menlo, Monaco, 'Droid Sans Mono', 'Courier New', monospace;
+  font-weight: 700;
+  opacity: 0.6;
+}
+
+.cv-entry > p::before {
+  content: '/* ';
+}
+
+.cv-entry > p::after {
+  content: ' */';
+}
+
 h1,
 h2,
 h3 {
@@ -573,6 +601,11 @@ h2 {
   color: var(--accent);
   font-size: 0.72rem;
   font-weight: 800;
+}
+
+/* Keep degree abbreviations like M.Sc. in their usual casing. */
+.degree-kicker {
+  text-transform: none;
 }
 
 h3 {

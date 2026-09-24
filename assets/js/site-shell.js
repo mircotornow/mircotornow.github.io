@@ -16,7 +16,7 @@
         <div class="shell topbar topbar-inner">
           <a class="brand" href="${page.homeHref}" aria-label="Home">
             <span class="brand-mark">
-              <img src="favicon.svg" alt="MT" class="brand-mark-img" />
+              <img src="resources/logo-dark.svg" alt="MT" class="brand-mark-img" />
             </span>
             <span class="brand-text">${data.brand.name}</span>
           </a>

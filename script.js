@@ -13,8 +13,9 @@ if (themeToggle) {
     themeToggle.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
     themeToggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
 
-    const logoSrc = theme === 'dark' ? 'favicon-light.svg' : 'favicon.svg';
-    document.querySelectorAll('link[rel~="icon"]').forEach((link) => link.setAttribute('href', logoSrc));
+    const logoSrc = theme === 'dark' ? 'resources/logo-light.svg' : 'resources/logo-dark.svg';
+    const faviconSrc = theme === 'dark' ? 'resources/favicon-light.svg' : 'resources/favicon-dark.svg';
+    document.querySelectorAll('link[rel~="icon"]').forEach((link) => link.setAttribute('href', faviconSrc));
     document.querySelectorAll('.brand-mark-img').forEach((img) => img.setAttribute('src', logoSrc));
   };
 
