@@ -18,7 +18,7 @@ window.SITE_DATA = {
   contact: {
     eyebrow: 'Contact',
     title: 'Get in touch.',
-    text: 'I’m easiest to reach through LinkedIn or E-Mail.',
+    text: 'Reach me via LinkedIn or email, or find my work on GitHub and IMDb.',
     email: 'hello@mircotornow.com',
     actions: [
       {
@@ -32,6 +32,12 @@ window.SITE_DATA = {
         href: 'https://github.com/mircotornow',
         variant: 'secondary',
         icon: 'resources/GitHub_Invertocat_Black.png',
+      },
+      {
+        label: 'IMDb',
+        href: 'https://www.imdb.com/name/nm13087269/',
+        variant: 'secondary',
+        icon: 'resources/Imdb-Logo.svg',
       },
     ],
   },

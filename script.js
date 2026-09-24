@@ -12,7 +12,10 @@ if (themeToggle) {
     document.documentElement.dataset.theme = theme;
     themeToggle.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
     themeToggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
-    themeToggle.querySelector('.theme-toggle-icon').textContent = theme === 'dark' ? '☀' : '☾';
+
+    const logoSrc = theme === 'dark' ? 'favicon-light.svg' : 'favicon.svg';
+    document.querySelectorAll('link[rel~="icon"]').forEach((link) => link.setAttribute('href', logoSrc));
+    document.querySelectorAll('.brand-mark-img').forEach((img) => img.setAttribute('src', logoSrc));
   };
 
   setTheme(document.documentElement.dataset.theme || 'light');
@@ -40,4 +43,29 @@ if ('IntersectionObserver' in window) {
   revealElements.forEach((element) => observer.observe(element));
 } else {
   revealElements.forEach((element) => element.classList.add('is-visible'));
+}
+
+const contactSection = document.getElementById('contact');
+const pageLink = document.querySelector(`.nav a[data-nav="${document.body.dataset.page || 'home'}"]`);
+const contactLink = document.querySelector('.nav a[data-nav="contact"]');
+
+if (contactSection && pageLink && contactLink) {
+  const updateActiveNav = () => {
+    const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+    const inContact = atBottom || contactSection.getBoundingClientRect().top < window.innerHeight * 0.5;
+    const active = inContact ? contactLink : pageLink;
+
+    [pageLink, contactLink].forEach((link) => {
+      link.classList.toggle('is-active', link === active);
+      if (link === active) {
+        link.setAttribute('aria-current', link === pageLink ? 'page' : 'location');
+      } else {
+        link.removeAttribute('aria-current');
+      }
+    });
+  };
+
+  updateActiveNav();
+  window.addEventListener('scroll', updateActiveNav, { passive: true });
+  window.addEventListener('resize', updateActiveNav);
 }

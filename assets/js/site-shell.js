@@ -15,20 +15,30 @@
       <header class="site-header" role="banner">
         <div class="shell topbar topbar-inner">
           <a class="brand" href="${page.homeHref}" aria-label="Home">
-            <span class="brand-mark">${data.brand.initials}</span>
+            <span class="brand-mark">
+              <img src="favicon.svg" alt="MT" class="brand-mark-img" />
+            </span>
             <span class="brand-text">${data.brand.name}</span>
           </a>
           <nav class="nav" aria-label="Primary">
             ${navItems
               .map((item) => {
                 const href = item.label === 'Contact' ? contactHref : item.href;
-                return `<a href="${href}">${item.label}</a>`;
+                const key = item.label.toLowerCase();
+                const current = key === pageKey ? ' class="is-active" aria-current="page"' : '';
+                return `<a href="${href}" data-nav="${key}"${current}>${item.label}</a>`;
               })
               .join('')}
+            <button class="theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed="false">
+              <svg class="theme-toggle-icon theme-toggle-moon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" />
+              </svg>
+              <svg class="theme-toggle-icon theme-toggle-sun" viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="4" />
+                <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+              </svg>
+            </button>
           </nav>
-          <button class="theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed="false">
-            <span class="theme-toggle-icon" aria-hidden="true">☾</span>
-          </button>
         </div>
       </header>
     `;
